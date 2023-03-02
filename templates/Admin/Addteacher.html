@@ -1,0 +1,59 @@
+{% extends 'Base/adminbase.html' %} {% block body %}
+<style>
+  #id_is_staff {
+    height: 20px;
+    
+  }
+  .errorlist {
+    color: red;
+  }
+  #id_password1,#id_password2 {
+    display: block;
+    width: 100%;
+    padding: 0.45rem 0.9rem;
+    font-size: .9rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--ct-input-color);
+    background-color: var(--ct-input-bg);
+    background-clip: padding-box;
+    border: 1px solid var(--ct-input-border-color);
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 0.25rem;
+    -webkit-transition: border-color .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
+    transition: border-color .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
+}
+</style>
+
+
+      <div class="container mt-3">
+        <div class="card shadow-lg">
+          <div class="card-header py-2 bg-info">
+            <h3 class="text-center text-light mb-0">Add Teacher</h3>
+          </div>
+          <div class="card-body p-3">
+            <form method="post"  >
+                {% csrf_token %}
+                <div class="row">
+                  {% for fm in form %}
+                  <div class="col-md-6 my-2">
+                    <p>{{fm.label_tag}}</p>
+                    {{ fm }} {{ fm.errors }}
+                  </div>
+                  {% endfor %}
+                  <button type="submit" class="btn btn-dark mt-2">Submit</button>
+                </div>
+              </form>
+          </div>
+        </div>
+      </div>
+        
+      
+  
+
+  {% endblock %}
+  

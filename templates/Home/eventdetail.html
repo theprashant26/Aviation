@@ -1,0 +1,72 @@
+{% extends 'Base/homebase.html' %} {% block title %}Events | Titan Aviation{% endblock %}{% block metadescription %}
+<meta name="description" content="" />
+<meta name="tittle" content="" />
+<meta name="keywords" content="" />
+{% endblock %} {% block body %}
+<style>
+    .blog_details img 
+    {
+        width: 100%;
+        height: 400px;
+        object-fit: cover;
+        object-position: top;
+    }
+</style>
+<div class="main-content">
+    <!-- Breadcrumbs Start -->
+    <div class="rs-breadcrumbs breadcrumbs-overlay">
+        <div class="breadcrumbs-img">
+            {% if event.event_img %}
+                 <img src="{{event.event_img.url}}"alt="Image" class="" height="450px">
+            {% endif %}
+        </div>
+        <div class="breadcrumbs-text white-color">
+            <h1 class="page-title">Events</h1>
+            <ul>
+                <li>
+                    <a class="active" href="/">Home</a>
+                </li>
+                <li>Event Detail</li>
+            </ul>
+        </div>
+    </div>
+
+<!-- Events section  -->
+
+<div class="events-details-area pt-100 pb-70">
+    <div class="container">
+        <div class="section-title">
+            <h2 class="heading-icon">{{event.event_title}}</h2>
+        </div>
+        <div class="row">
+            <div class="col-lg-9">
+                <div class="events-details-left-content pr-20">
+                    <div class="events-image event_details">
+                        {% if event.event_img %}
+                         <img src="{{event.event_img.url}}"alt="Image" class="">
+                        {% endif %}
+                    </div>
+                    <div class="meetings mt-4">
+                        <div style="text-align: justify;">
+                            {{event.event_descp | safe}}
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="p-5" style="background-color: #c3eafa;">
+                    <h4 class="address"><i class="fa fa-map-o"></i> {{event.event_location}}</h4>
+                    <h4 class="timesec"><i class="fa fa-calendar"></i> {{event.event_date}}</h4>
+                    <h4 class="timesec"><i class="fa flaticon-clock"></i> {{event.event_time}}</h4>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends 'Base/homebase.html' %} {% block title %} Admission {%endblock %} {%
+block metadescription %} {% block body %}
+
+<div class="page-banner-area bg-2">
+  <div class="container">
+    <div class="page-banner-content">
+      <h1 style="text-align: center;">Online Addmission</h1>
+      
+    </div>
+  </div>
+</div>
+
+<!-- online addmission forms section -->
+
+<div class="py-5" style="background-image: linear-gradient(to bottom right, #e6f6fa, #f0f8fa);">
+  <div class="container">
+    <div class="addmission-form-box">
+      <div class="addmission-header text-center mb-5">
+        <h5>Let's Get Started</h5>
+      </div>
+      <form
+        enctype="multipart/form-data"
+        method="post"
+        class="row"
+        action="{% url 'Admin:ADDstudent' %}"
+      >
+        {% csrf_token %}
+        <div class="row">
+          {% for fm in form %}
+
+          <div class="col-md-6 my-2">
+            <p>{{fm.label_tag}}</p>
+            {{ fm }} {{ fm.errors }}
+          </div>
+          {% endfor %}
+        </div>
+        <div>
+          <input type="checkbox" required />
+          <a
+            href="{% url 'Home:Term-and-condition' %}"
+            style="text-decoration: none"
+            >Terms & Conditions*</a
+          >
+        </div>
+        <button type="submit" class="mt-5" style="border: none; color: white; background-color: #19a5e0;padding: 7px; margin-right: 85%;">SUBMIT</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

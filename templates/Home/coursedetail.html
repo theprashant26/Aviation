@@ -1,0 +1,99 @@
+{% extends 'Base/homebase.html' %} {% block title %}{{course.course_title}} | Titan Aviation{% endblock %}{% block metadescription %}
+<meta name="description" content="" />
+<meta name="keywords" content="" />
+{% endblock %} {% block body %}
+<!-- Main content Start -->
+<div class="main-content">
+    <!-- Breadcrumbs Start -->
+    <div class="rs-breadcrumbs breadcrumbs-overlay">
+        <div class="breadcrumbs-img">
+            {% if course.course_bann %}
+            <img src="{{course.course_bann.url}}" alt="Breadcrumbs Image" height="420px">
+            {% endif %}
+        </div>
+        <div class="breadcrumbs-text white-color">
+            <h1 class="page-title">{{course.course_title}}</h1>
+            <ul>
+                <li>
+                    <a class="active" href="/">Home</a>
+                </li>
+                <li>Course Details</li>
+            </ul>
+        </div>
+    </div>
+    <!-- Breadcrumbs End -->            
+
+    <!-- Intro Courses -->
+    <section class="intro-section gray-bg pt-45 pb-100 md-pt-64 md-pb-70">
+        <div class="container">
+            <div class="row clearfix">
+                <!-- Content Column -->
+                <div class="col-lg-8 md-mb-50">
+                    <!-- Intro Info Tabs-->
+                    <div class="intro-info-tabs">
+                        <ul class="nav nav-tabs intro-tabs tabs-box" id="myTab" role="tablist">
+                            <li class="nav-item tab-btns">
+                                <a class="nav-link tab-btn active" id="prod-overview-tab" data-toggle="tab" href="#prod-overview" role="tab" aria-controls="prod-overview" aria-selected="true">Overview</a>
+                            </li>
+                           
+                        </ul>
+                        <div class="tab-content tabs-content" id="myTabContent">
+                            <div class="tab-pane tab fade show active" id="prod-overview" role="tabpanel" aria-labelledby="prod-overview-tab">
+                                <div class="content white-bg pt-30">
+                                    <!-- Cource Overview -->
+                                    <div class="course-overview">
+                                        <div class="inner-box">
+                                            {{course.course_descp | safe}}                                                                                                       
+                                        </div>
+                                    </div>                                                
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Video Column -->
+                <div class="video-column col-lg-4">
+                    <div class="inner-column">
+                    
+                        <div class="course-features-info">
+                            <ul>
+                                <li class="lectures-feature">
+                                    <i class="fa fa-files-o"></i>
+                                    <span class="label">Lectures</span>
+                                    <span class="value">{{course.course_lessons}}</span>
+                                </li>
+                               
+                                <li class="duration-feature">
+                                    <i class="fa fa-clock-o"></i>
+                                    <span class="label">Duration</span>
+                                    <span class="value">3 Months </span>
+                                </li>
+                              
+                                <li class="students-feature">
+                                    <i class="fa fa-users"></i>
+                                    <span class="label">Students</span>
+                                    <span class="value">{{course.course_stu}}</span>
+                                </li>
+                               
+                                <li class="assessments-feature">
+                                    <i class="fa fa-check-square-o"></i>
+                                    <span class="label">Assessments</span>
+                                    <span class="value">Yes</span>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div class="btn-part">
+                            <a class="btn readon2 orange">₹ {{course.course_price}}</a>
+                            <a href="{% url 'Home:Online-Admission' %}" class="btn readon2 orange-transparent">Buy Now</a>
+                        </div>
+                    </div>
+                </div>                        
+            </div>                
+        </div>
+    </section>
+    <!-- End intro Courses -->
+
+    {% endblock %}

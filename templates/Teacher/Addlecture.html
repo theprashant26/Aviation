@@ -1,0 +1,19 @@
+{% extends 'Base/teacherbase.html' %} {% block body %}
+
+<p class="text-center fw-bold bg-info py-2 text-light">Add Lecture</p>
+<form method="post" >
+  {% csrf_token %}
+  <div class="row">
+    {% for fm in form %}
+
+    <div class="col-md-6 my-2">
+      <p>{{fm.label_tag}}</p>
+      {{ fm }} {{ fm.errors }}
+    </div>
+    {% endfor %}
+  </div>
+
+  <button type="submit" class="btn btn-dark mt-2">Submit</button>
+</form>
+
+{% endblock %}

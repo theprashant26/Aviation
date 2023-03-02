@@ -1,0 +1,61 @@
+{% extends 'Base/studentbase.html'%}
+
+{% block body %}
+<div class="row mt-3">
+  {% if Test.Payment %} {% for item in lecture %}
+  <div class="col-md-6 mb-3">
+    {% if item.youtube_url is not None %}
+    <div class="card">
+      <div class="card-header text-center bg-info">
+        <p class="mb-0 text-light">Video No. {{item.lecture_num}}</p>
+      </div>
+      <div class="card m-4">
+        <div class="plyr__video-embed" id="player{{item.id}}">
+          <iframe
+            src="{{item.youtube_url}}"
+            frameborder="0"
+            allow="autoplay; fullscreen; picture-in-picture"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </div>
+      <div class="card-footer">
+        <p class="fw-bold mb-0">Title: {{item.title}}</p>
+      </div>
+    </div>
+    {% else %}
+    <div class="card">
+      <div class="card-header bg-info">
+        <p class="mb-0 text-center text-light">
+          Video No. {{item.lecture_num}}
+        </p>
+      </div>
+      <div class="card mt-3">
+        <div class="plyr__video-embed" id="player{{item.id}}">
+          <iframe
+            class="ifm"
+            src="{{item.vimeo_url}}?h=e56d64a085&title=0&byline=0&portrait=0"
+            frameborder="0"
+            allow="autoplay; fullscreen; picture-in-picture"
+            allowfullscreen
+          ></iframe>  
+        </div>
+      </div>
+      <div class="card-footer">
+        <p class="fw-bold mb-0">Title: {{item.title}}</p>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+  <script>
+    const player = new Plyr("#player{{item.id}}");
+  </script>
+  {% endfor %} {% else %}
+</div>
+<h3 class="text-center mb-0 mt-5">Please Complete your Payment</h3>
+<div class="d-flex justify-content-center"><img src="/static/Base/assets/images/bill.png" alt="bill" class="w-25"></div>
+<!-- new -->
+<div class="text-center">
+  <a href="{% url 'Student:payment' %}" class="btn btn-primary px-4">PAY</a>
+</div>
+{% endif %} {% endblock %}

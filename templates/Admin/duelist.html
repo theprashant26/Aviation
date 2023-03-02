@@ -1,0 +1,63 @@
+{% extends 'Base/adminbase.html' %}
+{% load mathfilters %}
+
+{% block body %}
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card shadow-lg">
+            <div class="card-header py-3">
+                    <h3 class="mb-0 text-center">Due List</h3>
+                </div>
+            <div class="card-body p-5">
+               <div class="table-responsive">
+                   <table id="exa" class="table table-bordered">
+                       <thead>
+                           <tr>
+                               <th>Name</th>
+                               <th>Mobile</th>
+                               <th>Email</th>
+                               <th>Enrollment Date</th>
+                               <th>Amount</th>
+                               <th >Due</th>
+                           </tr>
+                       </thead>
+                       <tbody>
+                           {% for item in due %}
+                           <tr>
+                               <td>{{item.Name}}</td>
+                               <td>{{item.Number}}</td>
+                               <td>{{item.Email}}</td>
+                               <td>{{item.Enrollment_date}}</td>
+                               <td>{{item.Course_name.Price}}</td>
+                               <td class='fw-bold text-danger'>
+                                {% if item.Course_name.Price < item.paid_amount  %}   
+                                0
+                                {% else %}
+                                {{item.Course_name.Price|sub:item.paid_amount  }}
+                                {% endif %}
+                            </td>
+                           </tr>
+                           {% endfor %}
+                       </tbody>
+                   </table>
+               </div>
+               
+           
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- data table -->
+<script>
+    $(document).ready( function () {
+      $('#exa').DataTable();
+  } );
+  </script>
+  <!-- data table -->
+
+{% endblock body %}

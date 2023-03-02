@@ -1,0 +1,82 @@
+{% extends 'Base/studentbase.html' %}
+{% block body %}
+
+	<div class="container mt-5">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card shadow-lg">
+                <div class="card-header py-3">
+                        <h3 class="mb-0 text-center">Your Lecture will be available after your installment</h3>
+                    </div>
+                <div class="card-body p-5">
+                   <div class="table-responsive">
+                       <table class="table table-bordered">
+                           <thead>
+                               <tr>
+                                   <th>Name</th>
+                                   <th>Email</th>
+                                   <th>Course</th>
+                                   <th>Course Price</th>
+                                   <th>Due</th>
+                               </tr>
+                           </thead>
+                           <tbody>
+                               <tr>
+                                   <td>{{item.Name}}</td>
+                                   <td>{{item.Email}}</td>
+                                   <td>{{item.Course_name}}</td>
+                                   <td>{{item.Course_name.Price}} INR</td>
+                                   <td class='fw-bold text-danger'> {{Due}}</td>
+                               </tr>
+                           </tbody>
+                       </table>
+                   </div>
+                     <button class="btn btn-primary" id="pay-btn">PROCEED</button>
+               
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<!-- Razorpay's Javascript code. -->
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+	var options = {
+	
+	// Enter the Key ID generated from the Dashboard
+	key: "{{ razorpay_merchant_key }}",
+	
+	// Amount is in currency subunits.
+	// Default currency is INR. Hence,
+	// 50000 refers to 50000 paise
+	amount: "{{ razorpay_amount }}",
+	currency: "{{ currency }}",
+	
+	// Your/store name.
+	name: "BRD Institute",
+    image: "static/Home/images/favicone.png",
+	// Pass the `id` obtained in the response of Step 1
+	order_id: "{{ razorpay_order_id }}",
+	callback_url: "{{ callback_url }}",
+    'prefill': {
+        "name": "{{item.Name}}",
+        "email": "{{item.Email}}",
+        "contact": "{{item.Number}}",
+    },
+	};
+	
+	// initialise razorpay with the options.
+	var rzp1 = new Razorpay(options);
+	
+	// add event listener to the payment button.
+	document.getElementById("pay-btn").onclick = function (e) {
+	rzp1.open();
+	e.preventDefault();
+	};
+</script>
+</html>
+
+
+{% endblock %}

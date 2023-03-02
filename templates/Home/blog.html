@@ -1,0 +1,91 @@
+{% extends 'Base/homebase.html' %} {% block title %}Blog | Titan Aviation{% endblock %}{% block metadescription %}
+<meta name="description" content="" />
+<meta name="tittle" content="" />
+<meta name="keywords" content="" />
+{% endblock %} {% block body %}
+
+
+<!-- Main content Start -->
+<div class="main-content">
+    <!-- Breadcrumbs Start -->
+    <div class="rs-breadcrumbs breadcrumbs-overlay">
+        <div class="breadcrumbs-img">
+            <img src="/static/Home/assets/images/breadcrumbs/2.jpg" alt="Breadcrumbs Image">
+        </div>
+        <div class="breadcrumbs-text white-color">
+            <h1 class="page-title">Blog</h1>
+            <ul>
+                <li>
+                    <a class="active" href="/">Home</a>
+                </li>
+                <li>Blog</li>
+            </ul>
+        </div>
+    </div>
+    <!-- Breadcrumbs End -->            
+
+      <!-- Blog Section Start -->
+    <div class="rs-inner-blog orange-color pt-100 pb-100 md-pt-70 md-pb-70">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-12 order-last">
+                    <div class="widget-area">
+                        <div class="recent-posts mb-50">
+                            <h3 class="widget-title">Recent Posts</h3>
+                            <ul>
+                                <li><a href="#">University while the lovely valley team work</a></li>
+                                <li><a href="#">High school program starting soon 2021</a></li>
+                                <li><a href="#">Modern School the lovely valley team work</a></li>
+                                <li><a href="#">While the lovely valley team work</a></li>
+                                <li><a href="#">This is a great source of content for anyone…</a></li>
+                            </ul>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="col-lg-8 pr-50">
+                    <div class="row">
+                        {% for b in bl %}
+                        <div class="col-lg-12 mb-70">
+                            <div class="blog-item">
+                                <div class="blog-img">
+                                    {% if b.blog_img %}
+                                    <a href="{% url 'Home:blogdetailview' b.blog_slug %}"><img src="{{b.blog_img.url}}" alt=""></a>
+                                    {% endif %}
+                                </div>
+                                <div class="blog-content">
+                                    <h3 class="blog-title"><a href="{% url 'Home:blogdetailview' b.blog_slug %}">{{b.blog_title}}</a></h3>
+                                    <div class="blog-meta">
+                                        <ul class="btm-cate">
+                                            <li>
+                                                <div class="blog-date">
+                                                    <i class="fa fa-calendar-check-o"></i> {{b.blog_date}}                                                        
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="author">
+                                                    <i class="fa fa-user-o"></i> {{b.blog_author}}  
+                                                </div>
+                                            </li>   
+                                            
+                                        </ul>
+                                    </div>
+                                    <div class="blog-desc">   
+                                        {{b.blog_desp | safe | slice:":100"}}...                                     
+                                    </div>
+                                    <div class="blog-button">
+                                        <a class="blog-btn" href="{% url 'Home:blogdetailview' b.blog_slug %}">Continue Reading</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        
+                        
+                    </div>
+                </div>
+            </div> 
+        </div>
+    </div>
+  <!-- Blog Section End -->  
+{% endblock %}

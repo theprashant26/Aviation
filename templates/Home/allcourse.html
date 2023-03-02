@@ -1,0 +1,71 @@
+{% extends 'Base/homebase.html' %} {% block title %} Our Courses | Titan Aviation{% endblock %}
+{%block metadescription %}
+<meta name="description" content="" />
+<meta name="tittle" content="" />
+<meta name="keywords" content="" />
+{% endblock %} {% block body %}
+
+
+<!-- Main content Start -->
+<div class="main-content">
+  <!-- Breadcrumbs Start -->
+  <div class="rs-breadcrumbs breadcrumbs-overlay">
+      <div class="breadcrumbs-img">
+          <img src="/static/Home/assets/images/breadcrumbs/1.jpg" alt="Breadcrumbs Image">
+      </div>
+      <div class="breadcrumbs-text">
+          <h1 class="page-title">Our Courses</h1>
+          <ul>
+              <li>
+                  <a class="active" href="/">Home</a>
+              </li>
+              <li>Course</li>
+          </ul>
+      </div>
+  </div>
+  <!-- Breadcrumbs End -->            
+
+  <!-- Popular Course Section Start -->
+  <div class="rs-popular-courses style2 white-bg pt-94 pb-100 md-pt-64 md-pb-70">
+      <div class="container">
+          <div class="row">
+            {% for c in course %}
+              <div class="col-lg-4 col-md-6 mb-30">
+                  <div class="course-wrap">
+                      <div class="front-part">
+                          <div class="img-part">
+                            {% if c.course_img %}
+                              <img src="{{c.course_img.url}}" alt="">
+                            {% endif %}
+                          </div>
+                          <div class="content-part">
+                              <a class="categorie" href="#">Titan Aviation</a>
+                              <h4 class="title"><a href="{% url 'Home:coursedetailview' c.course_slug %}">{{c.course_title}}</a></h4>
+                          </div>
+                      </div>
+                      <div class="inner-part">
+                          <div class="content-part">
+                              <a class="categorie" >Titan Aviation</a>
+                              <h4 class="title"><a href="{% url 'Home:coursedetailview' c.course_slug %}">{{c.course_title}}</a></h4>
+                              <ul class="course-meta">
+                                  <li class="course-user"><i class="fa fa-user"></i> {{c.course_stu}}</li>
+                                  <li class="user"><i class="fa fa-file"></i> {{c.course_lessons}} Lessons</li>
+                              </ul>
+                          </div>
+                      </div>
+                      <div class="price-btn">
+                          <a href="{% url 'Home:Online-Admission' %}">₹ {{c.course_price}} <i class="flaticon-next"></i></a>
+                      </div>
+                  </div>
+              </div>
+              {% endfor %}
+              
+              
+          </div>
+          
+      </div>
+  </div>
+  
+</div> 
+
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'Base/studentbase.html' %}
+
+{% block body %}
+
+<div class="container-fluid mt-5">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card shadow-lg">
+            <div class="card-header py-3">
+                    <h3 class="mb-0 text-center">Your Lecture will be available after your installment</h3>
+                </div>
+            <div class="card-body p-1">
+               <div class="table-responsive">
+                   <table class="table table-bordered">
+                       <thead>
+                           <tr>
+                               <th>Name</th>
+                               <th>Email</th>
+                               <th>Date</th>
+                               <th>Amount</th>
+                               <th>Payment ID</th>
+                               <th>Download Invoice</th>
+                           </tr>
+                       </thead>
+                       <tbody>
+                           {% for item in data %}
+                           <tr>
+                               <td>{{item.name}}</td>
+                               <td>{{item.user}}</td>
+                               <td>{{item.date2}}</td>
+                               <td>{{item.amount}}</td>
+                               <td>{{item.payment_id}}</td>
+                               <td><a href="{% url 'Student:invoice2' item.id %}">Invoice</a></td>
+                           </tr>
+                           {% endfor %}
+                       </tbody>
+                   </table>
+               </div>
+                 <a href="{% url 'Student:payment' %}" class="btn btn-primary mt-3" id="pay-btn">Complete your Payment</a>
+           
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock body %}
+

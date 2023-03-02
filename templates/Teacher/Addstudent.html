@@ -1,0 +1,26 @@
+{% extends 'Base/teacherbase.html' %} {% block body %}
+
+<div class="container mt-3">
+  <div class="card shadow-lg">
+    <div class="card-header bg-info py-2 ">
+      <h3 class="text-center fw-bold text-light mb-0">Add Student</h3>
+    </div>
+    <div class="card-body">
+      <form enctype="multipart/form-data"  method="post" action="{% url 'Admin:ADDstudent' %}" >
+        {% csrf_token %}
+        <div class="row">
+          {% for fm in form %}
+    
+          <div class="col-md-6 my-2">
+            <p>{{fm.label_tag}}</p>
+            {{ fm }} {{ fm.errors }}
+          </div>
+          {% endfor %}
+        </div>
+        <button type="submit" class="btn btn-dark mt-2 w-100">Submit</button>
+      </form>
+    </div>
+    </div>
+  </div>
+
+{% endblock %}

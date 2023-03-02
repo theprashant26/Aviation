@@ -1,0 +1,23 @@
+
+{% extends 'Base/teacherbase.html' %} 
+{% block body %}
+<p class="text-center fw-bold bg-info py-2 text-light">Update Student</p>
+
+<form enctype="multipart/form-data" method="post" class="row" action="{% url 'Admin:Student_edit' id %}">
+  {% csrf_token %}
+  <div class="row">
+    {% for fm in form %}
+
+    <div class="col-6 my-2">
+      <p>{{fm.label_tag}}</p>
+      {{ fm }} {{ fm.errors }}
+    </div>
+    {% endfor %}
+  </div>
+
+  <button type="submit" class="btn btn-dark mt-2">Submit</button>
+  <a href="{% url 'Admin:Studentboard' %}" class="btn btn-dark mt-2">Cancel</a>
+</form>
+
+ 
+{% endblock %}
